@@ -1,66 +1,81 @@
 # Using-tools-like-John-the-Ripper-for-password-cracking
 ## AIM:
 To crack password hashes using John the Ripper in Kali Linux.
-## REQUIREMENTS:
-- **Operating System:** Kali Linux / Ubuntu / Windows (with JtR binaries)
-- **Tools:**
-    - John the Ripper (Community/Pro version)
-    - Hash generating tools (e.g., openssl, unshadow)
-- **Test Data:**
-    - /etc/shadow file (Linux hashed passwords)
-    - Custom password-protected file (ZIP, RAR, etc.)
-## ARCHITECTURE DIAGRAM:
-```mermaid
-flowchart TD
-    A[Password Protected File / Hash] --> B[John the Ripper]
-    B --> C[Select Attack Mode: Dictionary or Brute Force]
-    C --> D[Load Wordlist / Charset Rules]
-    D --> E[Password Cracking Process]
-    E --> F[Recovered Passwords]
-```
-## DESIGN STEPS:
-### Step 1: Install John the Ripper
-```bash
-sudo apt update
-sudo apt install john -y
-```
 
-### Step 2: Prepare Hash File
-- Extract hashes (Linux example):
-```
-unshadow /etc/passwd /etc/shadow > myhashes.txt
-```
-- For a ZIP file:
-```
-zip2john secret.zip > ziphash.txt
-```
-### Step 3: Run John the Ripper
-- Dictionary Attack:
-```
-john --wordlist=/usr/share/wordlists/rockyou.txt myhashes.txt
-```
-- Brute Force (Incremental Mode):
-```
-john --incremental myhashes.txt
-```
-### Step 4: Show Cracked Passwords
-```
-john --show myhashes.txt
-```
+## DESIGN STEPS:
+### Step 1:
+Install John the Ripper using the command:
+
+### Step 2:
+Prepare the password hash file (e.g., using unshadow for Linux password and shadow files).
+
+
+### Step 3:
+Use John the Ripper to crack the hashes:
+
 ## PROGRAM:
-1. **Hash Extraction** – Obtain password hashes from system files or encrypted archives.
-2. **Attack Mode Selection** – Choose between dictionary, brute force, or hybrid.
-3. **Cracking Phase** – John the Ripper runs through candidate passwords.
-4. **Password Recovery** – Successfully cracked passwords are displayed.
+Password Cracking with John the Ripper
 
 ## OUTPUT:
 Cracked Passwords from Hash File
 
-<img width="973" height="1016" alt="Screenshot 2025-09-27 140603" src="https://github.com/user-attachments/assets/ca395836-3625-40af-b72d-c26f7e66f322" />
+* Create an Text file and name the text file(eg: srikrishna.txt).
+ 1. Right-click on the Desktop and choose Create Document → Empty Document.
+ 2. Name the file: krishna.txt.
+<img width="353" alt="image" src="https://github.com/user-attachments/assets/fd1e2fa5-9b8d-4238-8dc4-4e1f3f457e49" />
 
-<img width="963" height="503" alt="Screenshot 2025-09-27 140612" src="https://github.com/user-attachments/assets/5eb92a1b-c83d-4ada-9cd2-545dc63936a4" />
+3. Open it and right the below mentioned line in it.
 
-<img width="949" height="691" alt="Screenshot 2025-09-27 140622" src="https://github.com/user-attachments/assets/8418abee-beca-4635-8e4e-c7d81cc7f967" />
+  
+![Screenshot 2025-04-26 151041](https://github.com/user-attachments/assets/37f92e8e-926f-4aca-80bc-06736f4f4799)
+
+4. Save and close the file.
+
+
+
+
+* Create a Password-Protected ZIP File
+1. Right-click on krishna.txt → Create Archive.
+<img width="419" alt="image" src="https://github.com/user-attachments/assets/5feaafe4-24b5-4865-b528-1b139154ab30" />
+
+2. Select .zip format.
+3. Click Other Options, set a password (e.g., 1234), then click Create.
+4. A file named praveen.txt.zip will appear.
+
+
+
+* Open the John-The-Ripper-Tool
+1. Click on the Kali menu or press the Super (Windows) key.
+2. Search for “john” and click it — this opens the terminal with John the
+   Ripper installed.
+![Screenshot 2025-04-26 132841](https://github.com/user-attachments/assets/a1fc6849-b94d-443b-94a8-19de902f53af)
+
+3. Or simply open a Terminal from the dock or desktop.
+
+* Navigate to the File Location:
+1. In the terminal, switch to the Desktop where the ZIP file is located:
+   <img width="474" alt="image" src="https://github.com/user-attachments/assets/0be0897f-7140-4c94-9a39-518232121bfc" />
+
+* Confirm the ZIP File is Present
+  1. Run: “ls” command
+  2. You should see krishna.txt.zip listed.
+  <img width="472" alt="image" src="https://github.com/user-attachments/assets/2ff463e8-c480-4321-af24-d24ae0d47d53" />
+
+* Generate Hash Using zip2john:
+ 1. Execute:
+  <img width="478" alt="image" src="https://github.com/user-attachments/assets/810412e0-a87b-4f44-8792-c23af58f4c9c" />
+
+ * Verify the Hash File (Optional)
+ 1. Open hash.txt to ensure it contains the hash line.
+ <img width="330" alt="image" src="https://github.com/user-attachments/assets/7a942acb-07e9-451a-addf-c31f3978aef1" />
+
+* Start Cracking the Password:
+1. Run:
+<img width="473" alt="image" src="https://github.com/user-attachments/assets/05633d2a-3eb9-4f16-a880-8b1ce49fca8a" />
+
+* View the Cracked Password:
+1. After cracking is complete, reveal the password using:
+<img width="476" alt="image" src="https://github.com/user-attachments/assets/c3f94eab-a8cb-4f34-b5aa-c21ae256a51c" />
 
 
 ## RESULT:
